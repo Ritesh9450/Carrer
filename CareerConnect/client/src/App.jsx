@@ -1,0 +1,5 @@
+import { Routes,Route } from 'react-router-dom';
+import Layout from './components/Layout'; import ProtectedRoute from './components/ProtectedRoute';
+import Home from './pages/Home'; import Auth from './pages/Auth'; import JobDetails from './pages/JobDetails';
+import Applications from './pages/Applications'; import Recruiter from './pages/Recruiter'; import Admin from './pages/Admin';
+export default function App(){return <Layout><Routes><Route path="/" element={<Home/>}/><Route path="/login" element={<Auth mode="login"/>}/><Route path="/register" element={<Auth mode="register"/>}/><Route path="/jobs/:id" element={<JobDetails/>}/><Route path="/applications" element={<ProtectedRoute roles={['student']}><Applications/></ProtectedRoute>}/><Route path="/recruiter" element={<ProtectedRoute roles={['recruiter','admin']}><Recruiter/></ProtectedRoute>}/><Route path="/admin" element={<ProtectedRoute roles={['admin']}><Admin/></ProtectedRoute>}/><Route path="*" element={<div className="center-page">Page not found</div>}/></Routes></Layout>}
